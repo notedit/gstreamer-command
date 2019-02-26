@@ -18,3 +18,11 @@ gst-launch-1.0 -v udpsrc port=5000 address=127.0.0.1 caps="application/x-rtp,med
 ```
 gst-launch-1.0 videotestsrc ! x264enc ! muxer.  audiotestsrc ! avenc_ac3 ! muxer.  mpegtsmux name=muxer ! hlssink max-files=5
 ```
+
+
+### audio video to flv file
+
+```
+gst-launch-1.0 -v flvmux name=mux ! filesink location=test.flv  audiotestsrc samplesperbuffer=44100 num-buffers=10 ! faac ! mux.  videotestsrc num-buffers=250 ! video/x-raw,framerate=25/1 ! x264enc ! mux.
+
+```
