@@ -26,3 +26,10 @@ gst-launch-1.0 videotestsrc ! x264enc ! muxer.  audiotestsrc ! avenc_ac3 ! muxer
 gst-launch-1.0 -v flvmux name=mux ! filesink location=test.flv  audiotestsrc samplesperbuffer=44100 num-buffers=10 ! faac ! mux.  videotestsrc num-buffers=250 ! video/x-raw,framerate=25/1 ! x264enc ! mux.
 
 ```
+
+### mux audio and videofile to mkv file 
+
+```
+gst-launch-1.0 -v filesrc location=/path/to/mp3 ! mpegaudioparse ! matroskamux name=mux ! filesink location=test.mkv  filesrc location=/path/to/theora.ogg ! oggdemux ! theoraparse ! mux.
+
+```
