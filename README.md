@@ -36,4 +36,6 @@ gst-launch-1.0 -v filesrc location=/path/to/mp3 ! mpegaudioparse ! matroskamux n
 
 ### demux media file to audio and video 
 
+```
 gst-launch-1.0 filesrc location=test.mov ! qtdemux name=demux  demux.audio_0 ! queue ! decodebin ! audioconvert ! audioresample ! autoaudiosink   demux.video_0 ! queue ! decodebin ! videoconvert ! videoscale ! autovideosink
+```
