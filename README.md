@@ -39,3 +39,10 @@ gst-launch-1.0 -v filesrc location=/path/to/mp3 ! mpegaudioparse ! matroskamux n
 ```
 gst-launch-1.0 filesrc location=test.mov ! qtdemux name=demux  demux.audio_0 ! queue ! decodebin ! audioconvert ! audioresample ! autoaudiosink   demux.video_0 ! queue ! decodebin ! videoconvert ! videoscale ! autovideosink
 ```
+
+
+### demux rtmp stream to audio and video 
+
+```
+gst-launch-1.0 -v rtmpsrc location=rtmp://localhost/live/stream  ! flvdemux name=demux demux.audio ! queue ! decodebin ! audioconvert ! audioresample ! opusenc ! rtpopuspay timestamp-offset=0  ! udpsink  host=127.0.0.1 port=5000 demux.video! queue ! h264parse ! rtph264pay timestamp-offset=0 config-interval=-1  ! udpsink  host=127.0.0.1 port=5002
+```
